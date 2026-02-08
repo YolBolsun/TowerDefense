@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3307720659619887047}
   - component: {fileID: 2883086550790692167}
-  - component: {fileID: 4789316028700652811}
   - component: {fileID: 2434780866729188055}
   - component: {fileID: 2399876861962963781}
+  - component: {fileID: 2351222305399226819}
   m_Layer: 0
-  m_Name: BasicEcoTower (1)
-  m_TagString: EconomyTower
+  m_Name: OffensiveTower
+  m_TagString: OffensiveTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.18364668, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,23 +94,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &4789316028700652811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165215566222451778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeca0a25f326b2b4d9eaf3f82134605b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EcoTower
-  timeBetweenIncomeEvents: 1
-  incomeAmount: 2
-  isLossCondition: 0
-  health: 0
-  healthDisplayField: {fileID: 0}
 --- !u!114 &2434780866729188055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +155,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2351222305399226819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165215566222451778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb20d82e89ccca4eaacde02f3741005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OffensiveTower
+  attackDamage: 10
+  attackRange: 10
+  attackSpeed: 1
