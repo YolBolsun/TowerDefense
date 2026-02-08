@@ -1,16 +1,30 @@
+using TMPro;
 using UnityEngine;
 
 public class EcoTower : MonoBehaviour
 {
     [SerializeField] private float timeBetweenIncomeEvents;
     [SerializeField] private float incomeAmount;
+    [SerializeField] private bool isLossCondition;
+    [SerializeField] private float health;
+    [SerializeField] private TextMeshProUGUI healthDisplayField;
+
+    public float Health
+    {
+        get { return health; }
+        set { 
+            health = value; 
+            healthDisplayField.text = Mathf.RoundToInt(health).ToString();
+        }
+    }
 
 
     private float timeOfLastIncomeEvent = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //quick hack to update UI
+        Health = health;
     }
 
     // Update is called once per frame
@@ -21,5 +35,23 @@ public class EcoTower : MonoBehaviour
             EcoManager.instance.CurrGold += incomeAmount;
             timeOfLastIncomeEvent = Time.time;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Health -= damage;
+        if (Health <= 0f)
+        {
+            Health = 0f;
+            if (isLossCondition){
+                LoseGame();
+            }
+        }
+    }
+
+    public void LoseGame()
+    {
+        //TODO handle loss appropriately
+        Debug.Log("You lose");
     }
 }
