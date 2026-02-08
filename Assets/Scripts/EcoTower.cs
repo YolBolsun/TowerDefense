@@ -14,7 +14,10 @@ public class EcoTower : MonoBehaviour
         get { return health; }
         set { 
             health = value; 
-            healthDisplayField.text = Mathf.RoundToInt(health).ToString();
+            if(healthDisplayField != null)
+            {
+                healthDisplayField.text = Mathf.RoundToInt(health).ToString();
+            }
         }
     }
 

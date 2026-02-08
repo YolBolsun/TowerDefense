@@ -45,7 +45,7 @@ public class UpgradeTooltipManager : MonoBehaviour
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         Collider2D hit = Physics2D.OverlapPoint(worldPos);
 
-        if (hit != null && (hit.CompareTag("EconomyTower")))
+        if (hit != null && (hit.CompareTag("EconomyTower") || hit.CompareTag("OffensiveTower")))
         {
             // Clicked on a collider with the matching tag
             currObjectSelected = hit.gameObject.GetComponent<UpgradeableObject>();
@@ -64,6 +64,11 @@ public class UpgradeTooltipManager : MonoBehaviour
     }
 
     private void OnDeselect(InputAction.CallbackContext ctx)
+    {
+        HideTooltip();   
+    }
+
+    private void HideTooltip()
     {
         tooltipPanel.SetActive(false);
 
@@ -99,6 +104,9 @@ public class UpgradeTooltipManager : MonoBehaviour
 
     private void ImplementUpgrade(GameObject from, GameObject to)
     {
+
         GameObject.Instantiate(to, from.gameObject.transform.position, from.gameObject.transform.rotation);
+        Destroy(from);
+        HideTooltip();
     }
 }

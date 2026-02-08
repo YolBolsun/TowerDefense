@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0ea77edbe51614fb5bf5cf56993121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
-  upgradeOption1: {fileID: 8275770902094265780, guid: c37db41c328c2b947924ef40f703c714, type: 3}
-  upgradeOption2: {fileID: 7165215566222451778, guid: f9ccdf8a5d26c5f4a96b0eb648c20a83, type: 3}
+  upgradeOption1: {fileID: 7165215566222451778, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+  upgradeOption2: {fileID: 8275770902094265780, guid: c37db41c328c2b947924ef40f703c714, type: 3}
   tooltipText: base tower placeholder
 --- !u!61 &1777814410130331558
 BoxCollider2D:
