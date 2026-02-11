@@ -30,9 +30,6 @@ public class EnemySpawner : MonoBehaviour
         public List<Spawnable> waveSpawns;
     }
 
-
-    private float timeOfLastSpawn = 0f;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

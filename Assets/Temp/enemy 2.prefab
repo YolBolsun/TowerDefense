@@ -108,6 +108,7 @@ MonoBehaviour:
   maxHealth: 5
   movementSpeed: 4
   minimumProximityToPathPoint: 0.25
+  damage: 1
 --- !u!60 &-4812373525007101051
 PolygonCollider2D:
   m_ObjectHideFlags: 0
