@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float minimumProximityToPathPoint;
+    [SerializeField] private float damage;
 
     private float currHealth;
     private List<Transform> path;
@@ -57,9 +58,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EcoTower"))
+        if (collision.CompareTag("EconomyTower"))
         {
-            Debug.Log("damage to towers not implemented");
+            collision.gameObject.GetComponent<EcoTower>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }

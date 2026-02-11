@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8044404321632259704}
   - component: {fileID: -4812373525007101051}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.40501946, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35dc7b5724cc6d442859f498e5f702be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 20
-  movementSpeed: 2
+  maxHealth: 5
+  movementSpeed: 4
   minimumProximityToPathPoint: 0.25
-  damage: 2
+  damage: 1
 --- !u!60 &-4812373525007101051
 PolygonCollider2D:
   m_ObjectHideFlags: 0
