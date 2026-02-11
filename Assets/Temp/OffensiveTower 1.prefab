@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2399876861962963781}
   - component: {fileID: 2351222305399226819}
   m_Layer: 0
-  m_Name: OffensiveTower
+  m_Name: OffensiveTower 1
   m_TagString: OffensiveTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.18364668, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.34566194, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb20d82e89ccca4eaacde02f3741005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OffensiveTower
-  attackDamage: 10
-  attackRange: 10
+  attackDamage: 3
+  attackRange: 4
   attackSpeed: 1
   projectile: 0
   multiHit: 0
-  omniHit: 0
+  omniHit: 1

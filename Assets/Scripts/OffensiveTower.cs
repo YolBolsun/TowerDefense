@@ -18,7 +18,23 @@ public class OffensiveTower : MonoBehaviour
     private float secondsPerAttack;
     private List<Enemy> enemiesInRange = new List<Enemy>();
     private Enemy currentTarget;
-    private Vector3 projectileDestination;
+
+    public Enemy CurrentTarget
+    {
+        get
+        {
+            if (!CheckIfTargetIsStillValid())
+            {
+                AcquireNewTarget();
+            }
+            return currentTarget;
+        }
+        set
+        {
+            currentTarget = value;
+        }
+    }
+
 
     [Serializable]
     public class AttackData
@@ -60,9 +76,6 @@ public class OffensiveTower : MonoBehaviour
                 }
             }
         }
-
-        AquireNewTarget();
-
         PerformAttack();
     }
 
@@ -81,13 +94,13 @@ public class OffensiveTower : MonoBehaviour
         }
         else if (!projectile)
         {
-            if (currentTarget == null)
+            if (CurrentTarget == null)
             {
                 return;
             }
             else
             {
-                currentTarget.TakeDamage(data);
+                CurrentTarget.TakeDamage(data);
             }
         }
         else if (projectile)
@@ -97,27 +110,20 @@ public class OffensiveTower : MonoBehaviour
 
     }
 
-    private void AquireNewTarget()
+    private void AcquireNewTarget()
     {
         if (enemiesInRange.Count > 0)
         {
             currentTarget = enemiesInRange[0];
-            projectileDestination = currentTarget.transform.position;
+        }
+        else {
+            currentTarget = null;
         }
     }
 
-    private bool CheckIfTargetIsStillValid(Enemy target)
+    private bool CheckIfTargetIsStillValid()
     {
-        if (target == null)
-        {
-            return false;
-        }
-        else //need logic to determine if the enemy has left range
-        {
-            
-            return true;
-        }
-
+        return !(currentTarget == null || (currentTarget.gameObject.transform.position - transform.position).magnitude > attackRange)
     }
 
 }
