@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public bool spawnNextWaveEarly = false;
 
     [SerializeField] private List<Wave> waves;
+    [SerializeField] private float spawnLocRandomness = .5f;
 
     [Serializable]
     private class Spawnable
@@ -64,7 +66,10 @@ public class EnemySpawner : MonoBehaviour
             {
                 for(int i = 0; i < waves[waveNumber].waveSpawns[spawnNumber].enemyNumber; i++)
                 {
-                    GameObject.Instantiate(waves[waveNumber].waveSpawns[spawnNumber].enemyType, transform);
+                    float randX = Random.Range(-1*spawnLocRandomness, spawnLocRandomness);
+                    float randY = Random.Range(-1 * spawnLocRandomness, spawnLocRandomness);
+                    Vector3 spawnLoc = new Vector3(transform.position.x + randX, transform.position.y + randY, transform.position.z);
+                    GameObject.Instantiate(waves[waveNumber].waveSpawns[spawnNumber].enemyType,spawnLoc, Quaternion.identity, transform);
                 }
 
                 if (!spawnNextWaveEarly)
