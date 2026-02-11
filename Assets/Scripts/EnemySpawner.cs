@@ -1,37 +1,89 @@
-using NUnit.Framework;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemiesToSpawn;
-    [SerializeField] private float spawnRate;
+    /*[SerializeField] private List<GameObject> enemiesToSpawn;
+    [SerializeField] private float spawnRate;*/
+
+    private int waveNumber = 0;
+    private int spawnNumber = 0;
+
+    public bool spawnNextWaveEarly = false;
+
+    [SerializeField] private List<Wave> waves;
+
+    [Serializable]
+    private class Spawnable
+    {
+        public GameObject enemyType;
+        public int enemyNumber;
+        public float timeBeforeNextSpawn;
+    }
+
+    [Serializable]
+    private class Wave
+    {
+        public List<Spawnable> waveSpawns;
+    }
 
 
     private float timeOfLastSpawn = 0f;
-    private float secondsPerSpawn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        secondsPerSpawn = 1 / spawnRate;
+        if(waves.Count > 0)
+        {
+            StartCoroutine(SpawnNext());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        SpawnEnemies();
     }
 
-    private void SpawnEnemies()
+    IEnumerator SpawnNext()
     {
-        if(Time.time > timeOfLastSpawn + secondsPerSpawn)
+        Debug.Log(waveNumber + " " + spawnNumber);
+        if(waveNumber >= waves.Count)
         {
-            timeOfLastSpawn = Time.time;
-            foreach(GameObject enemy in enemiesToSpawn)
+            Debug.Log("waves are done, should probably go to the next level or something");
+        }
+        else
+        {
+            if(spawnNumber >= waves[waveNumber].waveSpawns.Count)
             {
-                GameObject.Instantiate(enemy, transform);
+                waveNumber += 1;
+                spawnNumber = 0;
+                spawnNextWaveEarly = false;
+                StartCoroutine(SpawnNext());
             }
+            else
+            {
+                for(int i = 0; i < waves[waveNumber].waveSpawns[spawnNumber].enemyNumber; i++)
+                {
+                    GameObject.Instantiate(waves[waveNumber].waveSpawns[spawnNumber].enemyType, transform);
+                }
+
+                if (!spawnNextWaveEarly)
+                {
+                    yield return new WaitForSeconds(waves[waveNumber].waveSpawns[spawnNumber].timeBeforeNextSpawn);
+
+                }
+                spawnNumber += 1;
+                StartCoroutine(SpawnNext());
+            }  
         }
     }
+
+    public void SpawnNextWaveEarly()
+    {
+        spawnNextWaveEarly = true;
+    }
+
 }
