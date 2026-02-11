@@ -2718,8 +2718,8 @@ MonoBehaviour:
   waves:
   - waveSpawns:
     - enemyType: {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
-      enemyNumber: 1
-      timeBeforeNextSpawn: 1
+      enemyNumber: 3
+      timeBeforeNextSpawn: 0
     - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
       enemyNumber: 1
       timeBeforeNextSpawn: 1
