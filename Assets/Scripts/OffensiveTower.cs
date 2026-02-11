@@ -10,20 +10,21 @@ public class OffensiveTower : MonoBehaviour
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackRange;
     [SerializeField] private float attackSpeed;
-    [SerializeField] public bool projectile = false;
-    [SerializeField] public bool multiHit = false;
-    [SerializeField] public bool omniHit = false;
-    [SerializeField] public bool hitScan = false;
+    [SerializeField] private bool projectile = false;
+    [SerializeField] private bool multiHit = false;
+    [SerializeField] private bool omniHit = false;
 
     private float timeOfLastAttack = 0f;
     private float secondsPerAttack;
     private List<Enemy> enemiesInRange = new List<Enemy>();
     private Enemy currentTarget;
+    private Vector3 projectileDestination;
 
     [Serializable]
     public class AttackData
     {
         public float attackDamage;
+        public float attackRange;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +41,24 @@ public class OffensiveTower : MonoBehaviour
             {
                 BeginAttack();
             }
+        }
+        else if (!projectile)
+        {
+            if (Time.time > timeOfLastAttack + secondsPerAttack)
+            {
+                BeginAttack();
+            }
+        }
+        else if (projectile)
+        {
+            if (Time.time > timeOfLastAttack + secondsPerAttack)
+            {
+                BeginAttack();
+            }
+        }
+        else
+        {
+            Debug.LogError("A tower is misconfigured");
         }
     }
 
@@ -64,7 +83,6 @@ public class OffensiveTower : MonoBehaviour
 
         AquireNewTarget();
 
-
         PerformAttack();
     }
 
@@ -81,9 +99,20 @@ public class OffensiveTower : MonoBehaviour
                 thisEnemy.TakeDamage(data);
             }
         }
-        else if (hitScan)
+        else if (!projectile)
         {
-            currentTarget.TakeDamage(data);
+            if (currentTarget == null)
+            {
+                return;
+            }
+            else
+            {
+                currentTarget.TakeDamage(data);
+            }
+        }
+        else if (projectile)
+        {
+            
         }
 
     }
@@ -93,6 +122,7 @@ public class OffensiveTower : MonoBehaviour
         if (enemiesInRange.Count > 0)
         {
             currentTarget = enemiesInRange[0];
+            projectileDestination = currentTarget.transform.position;
         }
     }
 
