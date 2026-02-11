@@ -35,31 +35,11 @@ public class OffensiveTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (omniHit)
+        if (Time.time > timeOfLastAttack + secondsPerAttack)
         {
-            if (Time.time > timeOfLastAttack + secondsPerAttack)
-            {
-                BeginAttack();
-            }
-        }
-        else if (!projectile)
-        {
-            if (Time.time > timeOfLastAttack + secondsPerAttack)
-            {
-                BeginAttack();
-            }
-        }
-        else if (projectile)
-        {
-            if (Time.time > timeOfLastAttack + secondsPerAttack)
-            {
-                BeginAttack();
-            }
-        }
-        else
-        {
-            Debug.LogError("A tower is misconfigured");
-        }
+            BeginAttack();
+         }
+        
     }
 
     private void BeginAttack()
@@ -73,11 +53,6 @@ public class OffensiveTower : MonoBehaviour
             {
                 // Clicked on a collider with the matching tag
                 Enemy currEnemy = hit.gameObject.GetComponent<Enemy>();
-
-                if (!enemiesInRange.Contains(currEnemy)) //This should be true, but its here for extra handling
-                {
-                    enemiesInRange.Add(currEnemy);
-                }
             }
         }
 
