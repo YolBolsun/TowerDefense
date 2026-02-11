@@ -123,7 +123,7 @@ public class OffensiveTower : MonoBehaviour
 
     private bool CheckIfTargetIsStillValid()
     {
-        return !(currentTarget == null || (currentTarget.gameObject.transform.position - transform.position).magnitude > attackRange)
+        return !(currentTarget == null || (currentTarget.gameObject.transform.position - transform.position).magnitude > attackRange);
     }
 
 }

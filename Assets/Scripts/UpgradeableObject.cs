@@ -3,7 +3,9 @@ using UnityEngine;
 public class UpgradeableObject : MonoBehaviour
 {
     public GameObject upgradeOption1;
+    public float cost1;
     public GameObject upgradeOption2;
+    public float cost2;
     public string tooltipText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

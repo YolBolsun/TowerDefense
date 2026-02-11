@@ -2290,6 +2290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTooltipManager
   tooltipPanel: {fileID: 221065711}
   tooltipText: {fileID: 1165254635}
+  button1: {fileID: 1454223369}
+  button2: {fileID: 2142798414}
 --- !u!4 &603642668
 Transform:
   m_ObjectHideFlags: 0
@@ -6435,6 +6437,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
   m_PrefabInstance: {fileID: 1068479172511955376}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1454223369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3413773704495878943, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+  m_PrefabInstance: {fileID: 1068479172511955376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1489210583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20671,7 +20684,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 8275770902094265780, guid: c37db41c328c2b947924ef40f703c714, type: 3}
+  cost1: 0
   upgradeOption2: {fileID: 7165215566222451778, guid: f9ccdf8a5d26c5f4a96b0eb648c20a83, type: 3}
+  cost2: 0
   tooltipText: Damage placeholder -> placeholder2 Attack Speed 1.5 -> 1.75
 --- !u!61 &2020731861
 BoxCollider2D:
@@ -21116,6 +21131,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &2142798414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3413773704495878943, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+  m_PrefabInstance: {fileID: 1489210583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1068479172511955376
 PrefabInstance:
   m_ObjectHideFlags: 0

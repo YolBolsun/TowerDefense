@@ -107,7 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 0}
+  cost1: 5
   upgradeOption2: {fileID: 0}
+  cost2: 10
   tooltipText: 
 --- !u!61 &2399876861962963781
 BoxCollider2D:
