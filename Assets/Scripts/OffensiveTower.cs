@@ -53,6 +53,11 @@ public class OffensiveTower : MonoBehaviour
             {
                 // Clicked on a collider with the matching tag
                 Enemy currEnemy = hit.gameObject.GetComponent<Enemy>();
+
+                if (!enemiesInRange.Contains(currEnemy)) //This should be true, but its here for extra handling
+                {
+                    enemiesInRange.Add(currEnemy);
+                }
             }
         }
 
