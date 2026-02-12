@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float minimumProximityToPathPoint;
     [SerializeField] private float damage;
+    [SerializeField] private AudioClip deathSound;
 
     [SerializeField] private Slider healthBarSlider;
 
@@ -57,7 +58,9 @@ public class Enemy : MonoBehaviour
         if (currHealth <= 0)
         {
             currHealth = 0;
-            Destroy(gameObject);
+            GetComponent<AudioSource>().PlayOneShot(deathSound);
+            Destroy(gameObject, .25f);
+            this.enabled = false;
         }
         healthBarSlider.value = currHealth;
     }
