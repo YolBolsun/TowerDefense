@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UpgradeTooltipManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject tooltipPanel;
     [SerializeField] private TMPro.TextMeshProUGUI tooltipText;
+    [SerializeField] private Button button1;
+    [SerializeField] private Button button2;
 
     private InputAction selectAction;
     private InputAction deselectAction;
@@ -44,6 +48,12 @@ public class UpgradeTooltipManager : MonoBehaviour
         Vector2 screenPos = cursorLocationAction.ReadValue<Vector2>();
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         Collider2D hit = Physics2D.OverlapPoint(worldPos);
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            // Don't click through ui elements
+            return;
+        }
 
         if (hit != null && (hit.CompareTag("EconomyTower") || hit.CompareTag("OffensiveTower")))
         {
@@ -87,6 +97,11 @@ public class UpgradeTooltipManager : MonoBehaviour
     private void SetupTooltip()
     {
         tooltipText.text = currObjectSelected.tooltipText;
+
+        button1.image.sprite = currObjectSelected.upgradeOption1.GetComponent<SpriteRenderer>().sprite;
+        button1.image.color = currObjectSelected.upgradeOption1.GetComponent<SpriteRenderer>().color;
+        button2.image.sprite = currObjectSelected.upgradeOption2.GetComponent<SpriteRenderer>().sprite;
+        button2.image.color = currObjectSelected.upgradeOption2.GetComponent<SpriteRenderer>().color;
         upgradeOption1Prefab = currObjectSelected.upgradeOption1;
         upgradeOption2Prefab = currObjectSelected.upgradeOption2;
         // TODO this needs to be created more intelligently to show what values we will upgrade to, probably on hover of the buttons
@@ -94,12 +109,30 @@ public class UpgradeTooltipManager : MonoBehaviour
 
     public void UpgradeOption1()
     {
-        ImplementUpgrade(currObjectSelected.gameObject, upgradeOption1Prefab);
+        if (currObjectSelected.cost1 <= EcoManager.instance.CurrGold)
+        {
+            EcoManager.instance.CurrGold -= currObjectSelected.cost1;
+            ImplementUpgrade(currObjectSelected.gameObject, upgradeOption1Prefab);
+        }
+        else
+        {
+            Debug.Log("play ui error sound");
+        }
+            
     }
 
     public void UpgradeOption2()
     {
-        ImplementUpgrade(currObjectSelected.gameObject, upgradeOption2Prefab);
+        
+        if (currObjectSelected.cost2 <= EcoManager.instance.CurrGold)
+        {
+            EcoManager.instance.CurrGold -= currObjectSelected.cost2;
+            ImplementUpgrade(currObjectSelected.gameObject, upgradeOption2Prefab);
+        }
+        else
+        {
+            Debug.Log("play ui error sound");
+        }
     }
 
     private void ImplementUpgrade(GameObject from, GameObject to)

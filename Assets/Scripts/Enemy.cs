@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float minimumProximityToPathPoint;
     [SerializeField] private float damage;
+    [SerializeField] private AudioClip deathSound;
+
+    [SerializeField] private Slider healthBarSlider;
 
     private float currHealth;
     private List<Transform> path;
@@ -19,6 +23,8 @@ public class Enemy : MonoBehaviour
     {
         currHealth = maxHealth;
         path = MapSetup.instance.path;
+        healthBarSlider.maxValue = maxHealth;
+        healthBarSlider.value = maxHealth;
     }
 
     // Update is called once per frame
@@ -52,8 +58,11 @@ public class Enemy : MonoBehaviour
         if (currHealth <= 0)
         {
             currHealth = 0;
-            Destroy(gameObject);
+            GetComponent<AudioSource>().PlayOneShot(deathSound);
+            Destroy(gameObject, .25f);
+            this.enabled = false;
         }
+        healthBarSlider.value = currHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
