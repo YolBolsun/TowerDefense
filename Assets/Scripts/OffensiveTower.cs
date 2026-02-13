@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class OffensiveTower : MonoBehaviour
@@ -10,9 +7,13 @@ public class OffensiveTower : MonoBehaviour
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackRange;
     [SerializeField] private float attackSpeed;
+    [SerializeField] private float projectileSpeed;
+    [SerializeField] private float splashRadius;
     [SerializeField] private bool projectile = false;
-    [SerializeField] private bool multiHit = false;
+    [SerializeField] private bool splashDamage = false;
+    [SerializeField] private float splashDuration;
     [SerializeField] private bool omniHit = false;
+    [SerializeField] private GameObject DamageHitboxPrefab;
 
     private float timeOfLastAttack = 0f;
     private float secondsPerAttack;
@@ -41,11 +42,21 @@ public class OffensiveTower : MonoBehaviour
     {
         public float attackDamage;
         public float attackRange;
+        public float projectileSpeed;
+        public float splashRadius;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         secondsPerAttack = 1 / attackSpeed;
+        if (splashDuration == 0)
+        {
+            splashDuration = 0.1f;
+        }
+        if (splashRadius == 0)
+        {
+            splashRadius = 0.1f;
+        }
     }
 
     // Update is called once per frame
@@ -84,6 +95,8 @@ public class OffensiveTower : MonoBehaviour
         timeOfLastAttack = Time.time;
         AttackData data = new AttackData();
         data.attackDamage = attackDamage;
+        data.projectileSpeed = projectileSpeed;
+        data.splashRadius = splashRadius;
 
         if (omniHit)
         {
@@ -92,7 +105,7 @@ public class OffensiveTower : MonoBehaviour
                 thisEnemy.TakeDamage(data);
             }
         }
-        else if (!projectile)
+        else if (!projectile) //hitscan
         {
             if (CurrentTarget == null)
             {
@@ -100,12 +113,41 @@ public class OffensiveTower : MonoBehaviour
             }
             else
             {
-                CurrentTarget.TakeDamage(data);
+                if (splashDamage)
+                {
+                    GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.gameObject.transform.position, UnityEngine.Quaternion.identity);
+                    var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
+                    hitBoxScript.attackDamage = data.attackDamage;
+                    hitBoxScript.splashRadius = data.splashRadius;
+                    hitBoxScript.attackDuration = splashDuration;
+                }
+                else
+                {
+                    CurrentTarget.TakeDamage(data);
+                }
             }
         }
         else if (projectile)
         {
-            
+            if (CurrentTarget == null)
+            {
+                return;
+            }
+            else
+            {
+                if (splashDamage)
+                {
+                    GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.gameObject.transform.position, UnityEngine.Quaternion.identity);
+                    var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
+                    hitBoxScript.attackDamage = data.attackDamage;
+                    hitBoxScript.splashRadius = data.splashRadius;
+                    hitBoxScript.attackDuration = splashDuration;
+                }
+                else
+                {
+                    CurrentTarget.TakeDamage(data);
+                }
+            }
         }
 
     }
