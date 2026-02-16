@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class OffensiveTower : MonoBehaviour
 {
-    //[SerializeField] private float attackDamage;
-    //[SerializeField] private float attackRange;
     [SerializeField] private float attackSpeed;
-    //[SerializeField] private float projectileSpeed;
-    //[SerializeField] private float splashRadius;
     [SerializeField] private bool projectile = false;
-    [SerializeField] private bool splashDamage = false;
-    [SerializeField] private float splashDuration;
-    [SerializeField] private bool omniHit = false;
     [SerializeField] private GameObject DamageHitboxPrefab;
 
     [SerializeField] private AttackData attackData;
@@ -45,17 +38,35 @@ public class OffensiveTower : MonoBehaviour
         public float attackDamage;
         public float attackRange;
         public float projectileSpeed;
+        public float attackLifetime;
         public float splashRadius = 1f;
         public float timeToDamage;
+        public bool followTarget = false;
+        public bool singleTarget = false;
+
+        [HideInInspector]
+        public Transform targetTransform;
+        [HideInInspector]
+        public Vector3 targetLocation;
+
+        public AttackData(AttackData other)
+        {
+            attackDamage = other.attackDamage;
+            attackRange = other.attackRange;
+            projectileSpeed = other.projectileSpeed;
+            attackLifetime = other.attackLifetime;  
+            splashRadius = other.splashRadius;  
+            timeToDamage = other.timeToDamage;
+            followTarget = other.followTarget;
+            singleTarget = other.singleTarget;
+            targetTransform = other.targetTransform;
+            targetLocation = other.targetLocation;
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         secondsPerAttack = 1 / attackSpeed;
-        if (splashDuration == 0)
-        {
-            splashDuration = 0.1f;
-        }
     }
 
     // Update is called once per frame
@@ -63,30 +74,23 @@ public class OffensiveTower : MonoBehaviour
     {
         if (Time.time > timeOfLastAttack + secondsPerAttack)
         {
-            BeginAttack();
+            PopulateEnemiesInRange();
+            PerformAttack();
          }
         
     }
 
-    private void BeginAttack()
+    private void PopulateEnemiesInRange()
     {
         enemiesInRange.Clear();
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackData.attackRange);
         foreach (Collider2D hit in hits)
         {
             if (hit != null && (hit.CompareTag("Enemy")))
             {
-                // Clicked on a collider with the matching tag
-                Enemy currEnemy = hit.gameObject.GetComponent<Enemy>();
-
-                if (!enemiesInRange.Contains(currEnemy)) //This should be true, but its here for extra handling
-                {
-                    enemiesInRange.Add(currEnemy);
-                }
+                enemiesInRange.Add(hit.gameObject.GetComponent<Enemy>());
             }
         }
-        PerformAttack();
     }
 
     private void PerformAttack()
@@ -94,14 +98,7 @@ public class OffensiveTower : MonoBehaviour
         timeOfLastAttack = Time.time;
 
 
-        if (omniHit)
-        {
-            foreach (Enemy thisEnemy in enemiesInRange)
-            {
-                thisEnemy.TakeDamage(attackData);
-            }
-        }
-        else if (!projectile) //hitscan
+        if (!projectile) //hitscan
         {
             if (CurrentTarget == null)
             {
@@ -109,18 +106,12 @@ public class OffensiveTower : MonoBehaviour
             }
             else
             {
-                if (splashDamage)
-                {
-                    GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.gameObject.transform.position, UnityEngine.Quaternion.identity);
-                    var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
-                }
-                else
-                {
-                    CurrentTarget.TakeDamage(attackData);
-                }
+                GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.transform.position, UnityEngine.Quaternion.identity);
+                DamageHitboxScript hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
+                hitBoxScript.attackData = attackData;
             }
         }
-        else if (projectile)
+        else
         {
             if (CurrentTarget == null)
             {
@@ -128,16 +119,18 @@ public class OffensiveTower : MonoBehaviour
             }
             else
             {
-                if (splashDamage)
+                if (attackData.followTarget)
                 {
-                    GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.gameObject.transform.position, UnityEngine.Quaternion.identity);
-                    var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
-                    hitBoxScript.attackData = attackData;
+                    attackData.targetTransform = CurrentTarget.transform;
                 }
                 else
                 {
-                    CurrentTarget.TakeDamage(attackData);
+                    attackData.targetTransform = null;
+                    attackData.targetLocation = CurrentTarget.transform.position;
                 }
+                GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, transform.position, UnityEngine.Quaternion.identity);
+                var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
+                hitBoxScript.attackData = attackData;
             }
         }
 
