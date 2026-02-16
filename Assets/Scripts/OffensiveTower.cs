@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class OffensiveTower : MonoBehaviour
 {
-    [SerializeField] private float attackDamage;
-    [SerializeField] private float attackRange;
+    //[SerializeField] private float attackDamage;
+    //[SerializeField] private float attackRange;
     [SerializeField] private float attackSpeed;
-    [SerializeField] private float projectileSpeed;
-    [SerializeField] private float splashRadius;
+    //[SerializeField] private float projectileSpeed;
+    //[SerializeField] private float splashRadius;
     [SerializeField] private bool projectile = false;
     [SerializeField] private bool splashDamage = false;
     [SerializeField] private float splashDuration;
     [SerializeField] private bool omniHit = false;
     [SerializeField] private GameObject DamageHitboxPrefab;
+
+    [SerializeField] private AttackData attackData;
 
     private float timeOfLastAttack = 0f;
     private float secondsPerAttack;
@@ -43,7 +45,8 @@ public class OffensiveTower : MonoBehaviour
         public float attackDamage;
         public float attackRange;
         public float projectileSpeed;
-        public float splashRadius;
+        public float splashRadius = 1f;
+        public float timeToDamage;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,10 +55,6 @@ public class OffensiveTower : MonoBehaviour
         if (splashDuration == 0)
         {
             splashDuration = 0.1f;
-        }
-        if (splashRadius == 0)
-        {
-            splashRadius = 0.1f;
         }
     }
 
@@ -73,7 +72,7 @@ public class OffensiveTower : MonoBehaviour
     {
         enemiesInRange.Clear();
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackData.attackRange);
         foreach (Collider2D hit in hits)
         {
             if (hit != null && (hit.CompareTag("Enemy")))
@@ -93,16 +92,13 @@ public class OffensiveTower : MonoBehaviour
     private void PerformAttack()
     {
         timeOfLastAttack = Time.time;
-        AttackData data = new AttackData();
-        data.attackDamage = attackDamage;
-        data.projectileSpeed = projectileSpeed;
-        data.splashRadius = splashRadius;
+
 
         if (omniHit)
         {
             foreach (Enemy thisEnemy in enemiesInRange)
             {
-                thisEnemy.TakeDamage(data);
+                thisEnemy.TakeDamage(attackData);
             }
         }
         else if (!projectile) //hitscan
@@ -117,13 +113,10 @@ public class OffensiveTower : MonoBehaviour
                 {
                     GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.gameObject.transform.position, UnityEngine.Quaternion.identity);
                     var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
-                    hitBoxScript.attackDamage = data.attackDamage;
-                    hitBoxScript.splashRadius = data.splashRadius;
-                    hitBoxScript.attackDuration = splashDuration;
                 }
                 else
                 {
-                    CurrentTarget.TakeDamage(data);
+                    CurrentTarget.TakeDamage(attackData);
                 }
             }
         }
@@ -139,13 +132,11 @@ public class OffensiveTower : MonoBehaviour
                 {
                     GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.gameObject.transform.position, UnityEngine.Quaternion.identity);
                     var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
-                    hitBoxScript.attackDamage = data.attackDamage;
-                    hitBoxScript.splashRadius = data.splashRadius;
-                    hitBoxScript.attackDuration = splashDuration;
+                    hitBoxScript.attackData = attackData;
                 }
                 else
                 {
-                    CurrentTarget.TakeDamage(data);
+                    CurrentTarget.TakeDamage(attackData);
                 }
             }
         }
@@ -165,7 +156,7 @@ public class OffensiveTower : MonoBehaviour
 
     private bool CheckIfTargetIsStillValid()
     {
-        return !(currentTarget == null || (currentTarget.gameObject.transform.position - transform.position).magnitude > attackRange);
+        return !(currentTarget == null || (currentTarget.gameObject.transform.position - transform.position).magnitude > attackData.attackRange);
     }
 
 }
