@@ -188,7 +188,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 200, y: 300}
+  m_SizeDelta: {x: 400, y: 450}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &221065713
 MonoBehaviour:
@@ -300,6 +300,10 @@ PrefabInstance:
     - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: attackData.statusEffectDuration
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434780866729188055, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3307720659619887047, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2672,6 +2676,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b8d2bdacf1ed1b4f91f392d3a6f7b1a, type: 3}
+--- !u!1 &975091212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1606918058675407284, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+  m_PrefabInstance: {fileID: 1489210583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1065282079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,8 +2765,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: -84}
+  m_SizeDelta: {x: -64, y: -232}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165254635
 MonoBehaviour:
@@ -2779,12 +2788,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Damage placeholder -> placeholder2
+  m_text: 'Ballista Tower\n
 
-    Attack Speed 1.5 -> 1.75'
+    Cost: ?
+
+    Damage: ?
+
+    Range: ?
+
+    Penetrating
+    Shot
+
+    Effect: Burn'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+  m_sharedMaterial: {fileID: -6960806499470601460, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2808,14 +2826,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6746,7 +6764,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3413773704495878943, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
   m_PrefabInstance: {fileID: 1068479172511955376}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1993123802}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -6771,6 +6789,10 @@ PrefabInstance:
     - target: {fileID: 3413773704495878943, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpgradeOption2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427201016213801820, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_Pivot.x
@@ -6798,11 +6820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6834,11 +6856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: -112
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -112
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6855,7 +6877,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1606918058675407284, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2142798417}
   m_SourcePrefab: {fileID: 100100000, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
 --- !u!224 &1489210584 stripped
 RectTransform:
@@ -14365,6 +14390,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_fontSize
+      value: 30.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6960806499470601460, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20863,6 +20904,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1605284406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1993123802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1606918058675407284, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+  m_PrefabInstance: {fileID: 1068479172511955376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1993123805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993123802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 603642667}
+          m_TargetAssemblyTypeName: UpgradeTooltipManager, Assembly-CSharp
+          m_MethodName: HoverOption1
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 603642667}
+          m_TargetAssemblyTypeName: UpgradeTooltipManager, Assembly-CSharp
+          m_MethodName: StopHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2020731856
 GameObject:
   m_ObjectHideFlags: 0
@@ -20991,7 +21082,8 @@ MonoBehaviour:
   cost1: 0
   upgradeOption2: {fileID: 7165215566222451778, guid: f9ccdf8a5d26c5f4a96b0eb648c20a83, type: 3}
   cost2: 0
-  tooltipText: Damage placeholder -> placeholder2 Attack Speed 1.5 -> 1.75
+  tooltipText1: 
+  tooltipText2: 
 --- !u!61 &2020731861
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21092,6 +21184,18 @@ PrefabInstance:
     - target: {fileID: 4427201016213801820, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_text
       value: Spawn Next Wave!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427201016213801820, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 4427201016213801820, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6960806499470601460, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 4427201016213801820, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_Pivot.x
@@ -21440,12 +21544,57 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3413773704495878943, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
   m_PrefabInstance: {fileID: 1489210583}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 975091212}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &2142798417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975091212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 603642667}
+          m_TargetAssemblyTypeName: UpgradeTooltipManager, Assembly-CSharp
+          m_MethodName: HoverOption2
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 603642667}
+          m_TargetAssemblyTypeName: UpgradeTooltipManager, Assembly-CSharp
+          m_MethodName: StopHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1068479172511955376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21462,6 +21611,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 603642667}
+    - target: {fileID: 4427201016213801820, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -21488,11 +21641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21524,11 +21677,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -112
       objectReference: {fileID: 0}
     - target: {fileID: 5258489581575778111, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21545,7 +21698,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1606918058675407284, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1993123805}
   m_SourcePrefab: {fileID: 100100000, guid: 959ac44f07a883741aa9264a62bc7e92, type: 3}
 --- !u!1001 &1601771613783918712
 PrefabInstance:
@@ -21638,6 +21794,22 @@ PrefabInstance:
     - target: {fileID: 3042006405404761330, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
       propertyPath: m_Name
       value: GoldValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_fontSize
+      value: 30.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6960806499470601460, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -96,8 +96,19 @@ public class UpgradeTooltipManager : MonoBehaviour
 
     private void SetupTooltip()
     {
-        tooltipText.text = currObjectSelected.tooltipText;
-
+        if(currObjectSelected.upgradeOption1 == null)
+        {
+            tooltipText.text = "Fully Upgraded!";
+            button1.interactable = false;
+            button2.interactable = false;
+            return;
+        }
+        else
+        {
+            button1.interactable = true;
+            button2.interactable = true;
+        }
+        StopHover();
         button1.image.sprite = currObjectSelected.upgradeOption1.GetComponent<SpriteRenderer>().sprite;
         button1.image.color = currObjectSelected.upgradeOption1.GetComponent<SpriteRenderer>().color;
         button2.image.sprite = currObjectSelected.upgradeOption2.GetComponent<SpriteRenderer>().sprite;
@@ -121,6 +132,16 @@ public class UpgradeTooltipManager : MonoBehaviour
             
     }
 
+    public void HoverOption1()
+    {
+        if (currObjectSelected.upgradeOption1 == null)
+        {
+            tooltipText.text = "Fully Upgraded!";
+            return;
+        }
+        tooltipText.text = currObjectSelected.tooltipText1;
+    }
+
     public void UpgradeOption2()
     {
         
@@ -133,6 +154,25 @@ public class UpgradeTooltipManager : MonoBehaviour
         {
             Debug.Log("play ui error sound");
         }
+    }
+    public void HoverOption2()
+    {
+        if (currObjectSelected.upgradeOption1 == null)
+        {
+            tooltipText.text = "Fully Upgraded!";
+            return;
+        }
+        tooltipText.text = currObjectSelected.tooltipText2;
+    }
+
+    public void StopHover()
+    {
+        if (currObjectSelected.upgradeOption1 == null)
+        {
+            tooltipText.text = "Fully Upgraded!";
+            return;
+        }
+        tooltipText.text = "Hover an upgrade option to see details!";
     }
 
     private void ImplementUpgrade(GameObject from, GameObject to)
