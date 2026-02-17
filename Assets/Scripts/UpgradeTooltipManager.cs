@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UpgradeTooltipManager : MonoBehaviour
 {
+    [SerializeField] private TMPro.TextMeshProUGUI currTowerText;
+    [SerializeField] private Image currTowerImage;
 
     [SerializeField] private GameObject tooltipPanel;
     [SerializeField] private TMPro.TextMeshProUGUI tooltipText;
@@ -96,7 +98,10 @@ public class UpgradeTooltipManager : MonoBehaviour
 
     private void SetupTooltip()
     {
-        if(currObjectSelected.upgradeOption1 == null)
+        currTowerImage.sprite = currObjectSelected.GetComponent<SpriteRenderer>().sprite;
+        currTowerImage.color = currObjectSelected.GetComponent<SpriteRenderer>().color;
+        currTowerText.text = currObjectSelected.currentTowerDescription;
+        if (currObjectSelected.upgradeOption1 == null)
         {
             tooltipText.text = "Fully Upgraded!";
             button1.interactable = false;

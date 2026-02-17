@@ -113,6 +113,8 @@ MonoBehaviour:
     Effect: None\n'
   tooltipText2: 'Magic Missile Tower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single
     Target\n Effect: None\n'
+  currentTowerDescription: 'Tower\Base\n\n Cost: -\n Damage: 0\n Range: 0\n -\n Effect:
+    None\n'
 --- !u!61 &1777814410130331558
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class UpgradeableObject : MonoBehaviour
     public string tooltipText1;
     public string tooltipText2;
 
+    public string currentTowerDescription;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2399876861962963781}
   - component: {fileID: 2351222305399226819}
   m_Layer: 0
-  m_Name: OffensiveTower
+  m_Name: ArrowTower
   m_TagString: OffensiveTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,10 @@ MonoBehaviour:
   cost1: 5
   upgradeOption2: {fileID: 0}
   cost2: 10
-  tooltipText: 
+  tooltipText1: 
+  tooltipText2: 
+  currentTowerDescription: 'Arrow\nTower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single
+    Target\n Effect: None\n'
 --- !u!61 &2399876861962963781
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,15 +172,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb20d82e89ccca4eaacde02f3741005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OffensiveTower
-  attackSpeed: 0.5
+  attackSpeed: 2
   projectile: 1
-  splashDamage: 1
-  splashDuration: 1
-  omniHit: 0
   DamageHitboxPrefab: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
   attackData:
     attackDamage: 5
     attackRange: 5
-    projectileSpeed: 5
-    splashRadius: 2
-    timeToDamage: 1
+    projectileSpeed: 20
+    attackLifetime: 1
+    splashRadius: 0.2
+    timeToDamage: 0.15
+    followTarget: 1
+    singleTarget: 1
+    statusEffect: 0
+    statusEffectDuration: 0
+    targetTransform: {fileID: 0}
+    targetLocation: {x: 0, y: 0, z: 0}
