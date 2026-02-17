@@ -262,28 +262,52 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: attackData.attackRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: attackData.attackDamage
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: attackData.followTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: attackData.singleTarget
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: attackData.splashRadius
-      value: 4
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: attackData.statusEffect
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: attackData.timeToDamage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: attackData.attackLifetime
-      value: 8
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: attackData.projectileSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: attackData.statusEffectDuration
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3307720659619887047, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.6322155
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 3307720659619887047, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.037441254
+      value: 3.62
       objectReference: {fileID: 0}
     - target: {fileID: 3307720659619887047, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: m_LocalPosition.z

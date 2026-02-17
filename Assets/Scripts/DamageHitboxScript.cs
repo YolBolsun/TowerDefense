@@ -35,7 +35,12 @@ public class DamageHitboxScript : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(attackData);
-            hasDamagedEnemies = true;
+            if (attackData.singleTarget)
+            {
+                // we might want to add a wrapper around destroy here to allow an impact animation to play
+                // that wrapper should also wrap the destroy for projectileLifetime being called at start
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -67,4 +72,6 @@ public class DamageHitboxScript : MonoBehaviour
             transform.Translate(direction.normalized * Time.deltaTime * attackData.projectileSpeed);
         }
     }
+
+
 }

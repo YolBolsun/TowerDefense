@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class OffensiveTower : MonoBehaviour
 {
     [SerializeField] private float attackSpeed;
@@ -19,10 +21,8 @@ public class OffensiveTower : MonoBehaviour
     {
         get
         {
-            if (!CheckIfTargetIsStillValid())
-            {
-                AcquireNewTarget();
-            }
+            // even if the old target is still valid, switch to the furthest forward enemy
+            AcquireNewTarget();
             return currentTarget;
         }
         set
@@ -31,6 +31,13 @@ public class OffensiveTower : MonoBehaviour
         }
     }
 
+    public enum StatusEffect
+    {
+        None,
+        Stun,
+        Slow,
+        Burn
+    }
 
     [Serializable]
     public class AttackData
@@ -43,6 +50,8 @@ public class OffensiveTower : MonoBehaviour
         public float timeToDamage;
         public bool followTarget = false;
         public bool singleTarget = false;
+        public StatusEffect statusEffect;
+        public float statusEffectDuration;
 
         [HideInInspector]
         public Transform targetTransform;
@@ -61,6 +70,8 @@ public class OffensiveTower : MonoBehaviour
             singleTarget = other.singleTarget;
             targetTransform = other.targetTransform;
             targetLocation = other.targetLocation;
+            statusEffect = other.statusEffect;
+            statusEffectDuration = other.statusEffectDuration;
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -136,20 +147,18 @@ public class OffensiveTower : MonoBehaviour
 
     }
 
+
+    // this is used by the CurrentTarget property and accesses currentTarget directly instead of through the property
     private void AcquireNewTarget()
     {
-        if (enemiesInRange.Count > 0)
+        currentTarget = null;
+        foreach(Enemy enemy in enemiesInRange)
         {
-            currentTarget = enemiesInRange[0];
+            if (currentTarget == null || enemy.distanceMoved > currentTarget.distanceMoved)
+            {
+                currentTarget = enemy;
+            }
         }
-        else {
-            currentTarget = null;
-        }
-    }
-
-    private bool CheckIfTargetIsStillValid()
-    {
-        return !(currentTarget == null || (currentTarget.gameObject.transform.position - transform.position).magnitude > attackData.attackRange);
     }
 
 }
