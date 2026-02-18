@@ -1,18 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
+
+
 
 public class OffensiveTower : MonoBehaviour
 {
-    [SerializeField] private float attackDamage;
-    [SerializeField] private float attackRange;
     [SerializeField] private float attackSpeed;
     [SerializeField] private bool projectile = false;
-    [SerializeField] private bool multiHit = false;
-    [SerializeField] private bool omniHit = false;
+    [SerializeField] private GameObject DamageHitboxPrefab;
+
+    [SerializeField] private AttackData attackData;
 
     private float timeOfLastAttack = 0f;
     private float secondsPerAttack;
@@ -23,10 +21,8 @@ public class OffensiveTower : MonoBehaviour
     {
         get
         {
-            if (!CheckIfTargetIsStillValid())
-            {
-                AcquireNewTarget();
-            }
+            // even if the old target is still valid, switch to the furthest forward enemy
+            AcquireNewTarget();
             return currentTarget;
         }
         set
@@ -35,12 +31,48 @@ public class OffensiveTower : MonoBehaviour
         }
     }
 
+    public enum StatusEffect
+    {
+        None,
+        Stun,
+        Slow,
+        Burn
+    }
 
     [Serializable]
     public class AttackData
     {
         public float attackDamage;
         public float attackRange;
+        public float projectileSpeed;
+        public float attackLifetime;
+        public float splashRadius = 1f;
+        public float timeToDamage;
+        public bool followTarget = false;
+        public bool singleTarget = false;
+        public StatusEffect statusEffect;
+        public float statusEffectDuration;
+
+        [HideInInspector]
+        public Transform targetTransform;
+        [HideInInspector]
+        public Vector3 targetLocation;
+
+        public AttackData(AttackData other)
+        {
+            attackDamage = other.attackDamage;
+            attackRange = other.attackRange;
+            projectileSpeed = other.projectileSpeed;
+            attackLifetime = other.attackLifetime;  
+            splashRadius = other.splashRadius;  
+            timeToDamage = other.timeToDamage;
+            followTarget = other.followTarget;
+            singleTarget = other.singleTarget;
+            targetTransform = other.targetTransform;
+            targetLocation = other.targetLocation;
+            statusEffect = other.statusEffect;
+            statusEffectDuration = other.statusEffectDuration;
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,46 +85,31 @@ public class OffensiveTower : MonoBehaviour
     {
         if (Time.time > timeOfLastAttack + secondsPerAttack)
         {
-            BeginAttack();
+            PopulateEnemiesInRange();
+            PerformAttack();
          }
         
     }
 
-    private void BeginAttack()
+    private void PopulateEnemiesInRange()
     {
         enemiesInRange.Clear();
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackData.attackRange);
         foreach (Collider2D hit in hits)
         {
             if (hit != null && (hit.CompareTag("Enemy")))
             {
-                // Clicked on a collider with the matching tag
-                Enemy currEnemy = hit.gameObject.GetComponent<Enemy>();
-
-                if (!enemiesInRange.Contains(currEnemy)) //This should be true, but its here for extra handling
-                {
-                    enemiesInRange.Add(currEnemy);
-                }
+                enemiesInRange.Add(hit.gameObject.GetComponent<Enemy>());
             }
         }
-        PerformAttack();
     }
 
     private void PerformAttack()
     {
         timeOfLastAttack = Time.time;
-        AttackData data = new AttackData();
-        data.attackDamage = attackDamage;
 
-        if (omniHit)
-        {
-            foreach (Enemy thisEnemy in enemiesInRange)
-            {
-                thisEnemy.TakeDamage(data);
-            }
-        }
-        else if (!projectile)
+
+        if (!projectile) //hitscan
         {
             if (CurrentTarget == null)
             {
@@ -100,30 +117,48 @@ public class OffensiveTower : MonoBehaviour
             }
             else
             {
-                CurrentTarget.TakeDamage(data);
+                GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, CurrentTarget.transform.position, UnityEngine.Quaternion.identity);
+                DamageHitboxScript hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
+                hitBoxScript.attackData = attackData;
             }
         }
-        else if (projectile)
+        else
         {
-            
+            if (CurrentTarget == null)
+            {
+                return;
+            }
+            else
+            {
+                if (attackData.followTarget)
+                {
+                    attackData.targetTransform = CurrentTarget.transform;
+                }
+                else
+                {
+                    attackData.targetTransform = null;
+                    attackData.targetLocation = CurrentTarget.transform.position;
+                }
+                GameObject DamageHitBox = GameObject.Instantiate(DamageHitboxPrefab, transform.position, UnityEngine.Quaternion.identity);
+                var hitBoxScript = DamageHitBox.GetComponent<DamageHitboxScript>();
+                hitBoxScript.attackData = attackData;
+            }
         }
 
     }
 
+
+    // this is used by the CurrentTarget property and accesses currentTarget directly instead of through the property
     private void AcquireNewTarget()
     {
-        if (enemiesInRange.Count > 0)
+        currentTarget = null;
+        foreach(Enemy enemy in enemiesInRange)
         {
-            currentTarget = enemiesInRange[0];
+            if (currentTarget == null || enemy.distanceMoved > currentTarget.distanceMoved)
+            {
+                currentTarget = enemy;
+            }
         }
-        else {
-            currentTarget = null;
-        }
-    }
-
-    private bool CheckIfTargetIsStillValid()
-    {
-        return !(currentTarget == null || (currentTarget.gameObject.transform.position - transform.position).magnitude > attackRange);
     }
 
 }

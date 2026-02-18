@@ -107,7 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 0}
+  cost1: 0
   upgradeOption2: {fileID: 0}
+  cost2: 0
   tooltipText: 
 --- !u!61 &2399876861962963781
 BoxCollider2D:
@@ -167,9 +169,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb20d82e89ccca4eaacde02f3741005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OffensiveTower
-  attackDamage: 3
-  attackRange: 4
   attackSpeed: 1
-  projectile: 0
-  multiHit: 0
-  omniHit: 1
+  projectile: 1
+  splashDamage: 1
+  splashDuration: 1
+  omniHit: 0
+  DamageHitboxPrefab: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
+  attackData:
+    attackDamage: 10
+    attackRange: 10
+    projectileSpeed: 10
+    splashRadius: 0.2
+    timeToDamage: 1

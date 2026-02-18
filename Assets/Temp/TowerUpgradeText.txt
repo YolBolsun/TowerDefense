@@ -1,0 +1,59 @@
+Tower Base
+
+Option 1
+Arrow\n Tower\n\n
+Cost: ?\n
+Damage: ?\n
+Range: ?\n
+Single Target\n
+Effect: None\n
+
+Option 2
+Magic Missile Tower\n\n
+Cost: ?\n
+Damage: ?\n
+Range: ?\n
+Single Target\n
+Effect: None\n
+
+
+Arrow Tower
+
+Option 1
+Cannon Tower\n\n
+Cost: ?\n
+Damage: ?\n
+Range: ?\n
+AOE\n
+Effect: Stun\n
+
+Option 2
+Ballista Tower\n\n
+Cost: ?\n
+Damage: ?\n
+Range: ?\n
+Penetrating Shot\n
+Effect: None\n
+
+
+Magic Missile Tower
+
+Option 1
+Fire Mage Tower\n\n
+Cost: ?\n
+Damage: ?\n
+Range: ?\n
+AOE\n
+Effect: Burn\n
+
+Option 2
+Earthquake Tower\n\n
+Cost: ?\n
+Damage: ?\n
+Range: ?\n
+AOE\n
+Effect: Slow\n
+
+
+
+

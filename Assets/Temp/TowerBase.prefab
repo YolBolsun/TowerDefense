@@ -109,7 +109,12 @@ MonoBehaviour:
   cost1: 5
   upgradeOption2: {fileID: 7165215566222451778, guid: 5b8d2bdacf1ed1b4f91f392d3a6f7b1a, type: 3}
   cost2: 10
-  tooltipText: 'upgrade 1: cost 5\nupgrade 2: cost 10'
+  tooltipText1: 'Arrow Tower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single Target\n
+    Effect: None\n'
+  tooltipText2: 'Magic Missile Tower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single
+    Target\n Effect: None\n'
+  currentTowerDescription: 'Tower\Base\n\n Cost: -\n Damage: 0\n Range: 0\n -\n Effect:
+    None\n'
 --- !u!61 &1777814410130331558
 BoxCollider2D:
   m_ObjectHideFlags: 0

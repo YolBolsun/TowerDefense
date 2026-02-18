@@ -48,7 +48,6 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnNext()
     {
-        Debug.Log(waveNumber + " " + spawnNumber);
         if(waveNumber >= waves.Count)
         {
             Debug.Log("waves are done, should probably go to the next level or something");

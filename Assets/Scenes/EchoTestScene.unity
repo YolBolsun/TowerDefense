@@ -1306,9 +1306,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: projectile
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: attackRange
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: splashDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: splashRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: DamageHitboxPrefab
+      value: 
+      objectReference: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
     - target: {fileID: 3307720659619887047, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.466655
@@ -1950,9 +1966,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba72c6bbeb23c1f49b4a71ba0c43ec48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemiesToSpawn:
-  - {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
-  spawnRate: 1
+  spawnNextWaveEarly: 0
+  waves: []
 --- !u!4 &1194359305
 Transform:
   m_ObjectHideFlags: 0
@@ -2565,6 +2580,10 @@ PrefabInstance:
       propertyPath: attackDamage
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2351222305399226819, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+      propertyPath: DamageHitboxPrefab
+      value: 
+      objectReference: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
     - target: {fileID: 3307720659619887047, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.46
@@ -2614,6 +2633,91 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
+--- !u!1 &1951219091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1951219093}
+  - component: {fileID: 1951219092}
+  m_Layer: 0
+  m_Name: EnemySpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1951219092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951219091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba72c6bbeb23c1f49b4a71ba0c43ec48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  spawnNextWaveEarly: 0
+  waves:
+  - waveSpawns:
+    - enemyType: {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
+      enemyNumber: 3
+      timeBeforeNextSpawn: 0
+    - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+    - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+    - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+    - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 3
+  - waveSpawns:
+    - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
+      enemyNumber: 4
+      timeBeforeNextSpawn: 0
+    - enemyType: {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+  - waveSpawns:
+    - enemyType: {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+    - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+    - enemyType: {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+    - enemyType: {fileID: 4805701862266605561, guid: f0e3adb45e5843c458cec089f7a16d7c, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+    - enemyType: {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
+      enemyNumber: 1
+      timeBeforeNextSpawn: 1
+--- !u!4 &1951219093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951219091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.32, y: 3.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1955305706
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,3 +3136,4 @@ SceneRoots:
   - {fileID: 1194359305}
   - {fileID: 1876980886}
   - {fileID: 534725785}
+  - {fileID: 1951219093}
