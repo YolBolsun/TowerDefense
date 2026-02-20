@@ -151,7 +151,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.25}
     oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb20d82e89ccca4eaacde02f3741005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OffensiveTower
-  attackSpeed: 1.5
+  displayName: Ballista Tower
+  attackSpeed: 0.75
   projectile: 1
   DamageHitboxPrefab: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
   attackData:

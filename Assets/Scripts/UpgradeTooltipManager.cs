@@ -100,7 +100,16 @@ public class UpgradeTooltipManager : MonoBehaviour
     {
         currTowerImage.sprite = currObjectSelected.GetComponent<SpriteRenderer>().sprite;
         currTowerImage.color = currObjectSelected.GetComponent<SpriteRenderer>().color;
-        currTowerText.text = currObjectSelected.currentTowerDescription;
+        OffensiveTower offTower = currObjectSelected.GetComponent<OffensiveTower>();
+        if(offTower != null)
+        {
+            currTowerText.text = offTower.GetUpgradeableObjectTooltip();
+        }
+        else
+        {
+            currTowerText.text = currObjectSelected.currentTowerDescription;
+        }
+            
         if (currObjectSelected.upgradeOption1 == null)
         {
             tooltipText.text = "Fully Upgraded!";
@@ -144,7 +153,17 @@ public class UpgradeTooltipManager : MonoBehaviour
             tooltipText.text = "Fully Upgraded!";
             return;
         }
-        tooltipText.text = currObjectSelected.tooltipText1;
+        OffensiveTower offTower = currObjectSelected.upgradeOption1.GetComponent<OffensiveTower>();
+        if (offTower != null)
+        {
+            tooltipText.text = offTower.GetUpgradeableObjectTooltip();
+        }
+        else
+        {
+            tooltipText.text = currObjectSelected.tooltipText1;
+        }
+        tooltipText.text += $"\n Cost: {currObjectSelected.cost1}";
+            
     }
 
     public void UpgradeOption2()
@@ -162,12 +181,21 @@ public class UpgradeTooltipManager : MonoBehaviour
     }
     public void HoverOption2()
     {
-        if (currObjectSelected.upgradeOption1 == null)
+        if (currObjectSelected.upgradeOption2 == null)
         {
             tooltipText.text = "Fully Upgraded!";
             return;
         }
-        tooltipText.text = currObjectSelected.tooltipText2;
+        OffensiveTower offTower = currObjectSelected.upgradeOption2.GetComponent<OffensiveTower>();
+        if (offTower != null)
+        {
+            tooltipText.text = offTower.GetUpgradeableObjectTooltip();
+        }
+        else
+        {
+            tooltipText.text = currObjectSelected.tooltipText2;
+        }
+        tooltipText.text += $"\n Cost: {currObjectSelected.cost1}";
     }
 
     public void StopHover()
