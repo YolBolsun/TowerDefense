@@ -1168,6 +1168,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1293,6 +1294,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce46c3c193eb9e043be2d7866195970a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraEffects
 --- !u!1001 &534725785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1544,8 +1557,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c1808de1bf53d42b3848be97b2523d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTooltipManager
+  currTowerText: {fileID: 0}
+  currTowerImage: {fileID: 0}
   tooltipPanel: {fileID: 221065711}
   tooltipText: {fileID: 1165254635}
+  button1: {fileID: 0}
+  button2: {fileID: 0}
 --- !u!4 &603642668
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,6 +1985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   spawnNextWaveEarly: 0
   waves: []
+  spawnLocRandomness: 0.5
 --- !u!4 &1194359305
 Transform:
   m_ObjectHideFlags: 0
@@ -2469,6 +2487,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_fontSize
+      value: 30.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6960806499470601460, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2703,6 +2733,7 @@ MonoBehaviour:
     - enemyType: {fileID: 4805701862266605561, guid: cc1ff02a0c25b564c90412d6bd3771c1, type: 3}
       enemyNumber: 1
       timeBeforeNextSpawn: 1
+  spawnLocRandomness: 0.5
 --- !u!4 &1951219093
 Transform:
   m_ObjectHideFlags: 0
@@ -2873,8 +2904,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 8275770902094265780, guid: c37db41c328c2b947924ef40f703c714, type: 3}
+  cost1: 0
   upgradeOption2: {fileID: 7165215566222451778, guid: f9ccdf8a5d26c5f4a96b0eb648c20a83, type: 3}
-  tooltipText: Damage placeholder -> placeholder2 Attack Speed 1.5 -> 1.75
+  cost2: 0
+  tooltipText1: 
+  tooltipText2: 
+  currentTowerDescription: 
 --- !u!61 &2020731861
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3113,6 +3148,18 @@ PrefabInstance:
     - target: {fileID: 3042006405404761330, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
       propertyPath: m_Name
       value: GoldValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_fontSize
+      value: 30.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6960806499470601460, guid: 9e76321b047ca464abc8e576933da15c, type: 2}
+    - target: {fileID: 5453878256416361044, guid: 625da76279b188c4daaaaf4d5a928825, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
