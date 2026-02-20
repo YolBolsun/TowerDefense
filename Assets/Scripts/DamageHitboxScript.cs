@@ -23,6 +23,10 @@ public class DamageHitboxScript : MonoBehaviour
         {
             coll.enabled = false;
         }
+        if (attackData.targetTransform != null)
+        {
+            attackData.targetLocation = attackData.targetTransform.position;
+        }
         //animator = GetComponent<Animator>();
     }
 
