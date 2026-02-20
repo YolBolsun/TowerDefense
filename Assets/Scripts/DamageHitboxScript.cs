@@ -23,10 +23,6 @@ public class DamageHitboxScript : MonoBehaviour
         {
             coll.enabled = false;
         }
-        if (attackData.targetTransform != null)
-        {
-            attackData.targetLocation = attackData.targetTransform.position;
-        }
         //animator = GetComponent<Animator>();
     }
 
@@ -38,6 +34,7 @@ public class DamageHitboxScript : MonoBehaviour
         }
         if (collision.CompareTag("Enemy"))
         {
+            hasDamagedEnemies = true;
             collision.gameObject.GetComponent<Enemy>().TakeDamage(attackData);
             if (attackData.singleTarget)
             {
@@ -65,12 +62,11 @@ public class DamageHitboxScript : MonoBehaviour
 
     private void Move()
     {
-        Vector3 targetLocation = attackData.targetLocation;
         if (attackData.targetTransform != null)
         {
-            targetLocation = attackData.targetTransform.position;
+            attackData.targetLocation = attackData.targetTransform.position;
         }
-        Vector3 direction = targetLocation - transform.position;
+        Vector3 direction = attackData.targetLocation - transform.position;
         if (direction.magnitude > .1f)
         {
             transform.Translate(direction.normalized * Time.deltaTime * attackData.projectileSpeed);

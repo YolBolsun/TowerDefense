@@ -7,25 +7,36 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy Stats and Movement")]
     [SerializeField] private float maxHealth;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float minimumProximityToPathPoint;
     [SerializeField] private float damage;
-    [SerializeField] private AudioClip deathSound;
 
+    [Header("Sound FX and Visuals")]
+    [SerializeField] private AudioClip deathSound;
     [SerializeField] private Slider healthBarSlider;
 
+    [Header("Burn Damage")]
     [SerializeField] private float burnTickAmount;
     [SerializeField] private float burnTickCooldown;
     [SerializeField] private GameObject burningAnimationObject;
+
+    [Header("Splitter Settings")]
+    [SerializeField] private bool splitter = false; 
+    [SerializeField] private int splitterCount;
+    [SerializeField] private float spawnLocRandomness = .5f;
+    [SerializeField] private GameObject splitVersionPrefab;
 
     private List<OffensiveTower.StatusEffect> statusEffects = new List<OffensiveTower.StatusEffect>();
     private List<float> statusEffectEndTimes = new List<float>();
 
     private float currHealth;
     private List<Transform> path;
-    private int currPathIndex;
+    [HideInInspector]
+    public int currPathIndex = 0;
 
+    [HideInInspector]
     public float distanceMoved = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -100,11 +111,29 @@ public class Enemy : MonoBehaviour
         if (currHealth <= 0)
         {
             currHealth = 0;
-            GetComponent<AudioSource>().PlayOneShot(deathSound);
-            Destroy(gameObject, .25f);
-            this.enabled = false;
+            Die();
         }
         healthBarSlider.value = currHealth;
+    }
+
+    private void Die()
+    {
+        if (splitter)
+        {
+            for(int i = 0; i < splitterCount; i++)
+            {
+                float randX = Random.Range(-1 * spawnLocRandomness, spawnLocRandomness);
+                float randY = Random.Range(-1 * spawnLocRandomness, spawnLocRandomness);
+                Vector3 spawnLoc = new Vector3(transform.position.x + randX, transform.position.y + randY, transform.position.z);
+                Enemy splitterChild = GameObject.Instantiate(splitVersionPrefab, spawnLoc, Quaternion.identity).GetComponent<Enemy>();
+                splitterChild.currPathIndex = currPathIndex;
+                splitterChild.distanceMoved = distanceMoved;
+            }
+        }
+
+        GetComponent<AudioSource>().PlayOneShot(deathSound);
+        Destroy(gameObject, .25f);
+        this.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

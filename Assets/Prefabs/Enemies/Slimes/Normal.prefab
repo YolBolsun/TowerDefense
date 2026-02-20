@@ -118,6 +118,10 @@ MonoBehaviour:
   burnTickAmount: 1
   burnTickCooldown: 1
   burningAnimationObject: {fileID: 3472894207333788630}
+  splitter: 0
+  splitterCount: 0
+  spawnLocRandomness: 0.5
+  splitVersionPrefab: {fileID: 0}
   distanceMoved: 0
 --- !u!60 &-4812373525007101051
 PolygonCollider2D:
@@ -166,8 +170,9 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+      - {x: -0.5180393, y: -0.94707984}
+      - {x: 0.01299727, y: -1.0372739}
+      - {x: 0.5090195, y: -0.9200223}
   m_UseDelaunayMesh: 1
 --- !u!95 &778099042333342121
 Animator:
