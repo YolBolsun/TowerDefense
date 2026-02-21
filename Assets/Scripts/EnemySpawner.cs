@@ -18,6 +18,23 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<Wave> waves;
     [SerializeField] private float spawnLocRandomness = .5f;
 
+    [Header("Auto Wave Generation")]
+    [SerializeField] private bool useAutoWaves;
+    [SerializeField] private List<GameObject> prefabsToUse;
+    [SerializeField] private float perWaveTime;
+    [SerializeField] private int wavesTotal;
+    [SerializeField] private float firstWaveTotalHealth;
+    [SerializeField] private float lastWaveTotalHealth;
+    [Tooltip("Specify sets of indices in prefabs to use to spawn together in a short duration")]
+    [SerializeField] private List<SpawnCluster> enemySingleSpawnCluster;
+    [SerializeField] private float timeBetweenSpawnInClusters;
+
+    [Serializable]
+    private class SpawnCluster
+    {
+        public List<GameObject> enemyType;
+    }
+
     [Serializable]
     private class Spawnable
     {
@@ -35,6 +52,10 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (useAutoWaves)
+        {
+            GenerateWaveSetup();
+        }
         if(waves.Count > 0)
         {
             StartCoroutine(SpawnNext());
@@ -85,6 +106,75 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnNextWaveEarly()
     {
         spawnNextWaveEarly = true;
+    }
+
+    
+    public void GenerateWaveSetup()
+    {
+        waves = new List<Wave>();
+        /*Spawnable spawn = new Spawnable();
+        spawn.enemyType = prefabsToUse[0];
+        spawn.enemyNumber = 1;
+        spawn.timeBeforeNextSpawn = 1f;
+        Wave newWave = new Wave();
+        newWave.waveSpawns = new List<Spawnable> { spawn };
+        waves.Add(newWave);
+        return;*/
+
+
+        for( int i = 0; i < wavesTotal; i++)
+        {
+            float healthForThisWave = (lastWaveTotalHealth - firstWaveTotalHealth) / wavesTotal * i + firstWaveTotalHealth;
+            float healthSpawned = 0;
+            float timeUsed = 0;
+            Wave currWave = new Wave();
+            currWave.waveSpawns = new List<Spawnable>();
+            while (healthSpawned < healthForThisWave)
+            {
+                List<GameObject> prefabsToSpawn = GetPrefabsToSpawn();
+                int spawnedThisCluster = 0;
+                foreach(GameObject prefab in prefabsToSpawn)
+                {
+                    Enemy enemy = prefab.GetComponent<Enemy>();
+                    healthSpawned += enemy.maxHealth;
+                    Spawnable toSpawn = new Spawnable();
+                    toSpawn.enemyType = prefab;
+                    toSpawn.enemyNumber = 1;
+                    spawnedThisCluster += 1;
+                    // if we are not on the last spawn of the cluster
+                    if (prefabsToSpawn.Count > spawnedThisCluster)
+                    {
+                        toSpawn.timeBeforeNextSpawn = timeBetweenSpawnInClusters;
+                    }
+                    else
+                    {
+                        toSpawn.timeBeforeNextSpawn = ((healthSpawned / healthForThisWave)-(timeUsed/perWaveTime)) * perWaveTime;
+                        toSpawn.timeBeforeNextSpawn = toSpawn.timeBeforeNextSpawn < 0f ? 0f : toSpawn.timeBeforeNextSpawn;
+                    }
+                    currWave.waveSpawns.Add(toSpawn);
+                    timeUsed += toSpawn.timeBeforeNextSpawn;
+                }
+            }
+            waves.Add(currWave);
+        }
+    }
+
+    public List<GameObject> GetPrefabsToSpawn()
+    {
+        
+
+        if(enemySingleSpawnCluster != null && enemySingleSpawnCluster.Count > 0)
+        {
+            int cluster = Random.Range(0,enemySingleSpawnCluster.Count);
+            return enemySingleSpawnCluster[cluster].enemyType;
+        }
+        else
+        {
+            List<GameObject> toSpawn = new List<GameObject>();
+            int prefabIndex = Random.Range(0, prefabsToUse.Count);
+            toSpawn.Add(prefabsToUse[prefabIndex]);
+            return toSpawn;
+        }
     }
 
 }

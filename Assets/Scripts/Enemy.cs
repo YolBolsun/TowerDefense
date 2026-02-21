@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats and Movement")]
-    [SerializeField] private float maxHealth;
+    [SerializeField] public float maxHealth;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float minimumProximityToPathPoint;
     [SerializeField] private float damage;
