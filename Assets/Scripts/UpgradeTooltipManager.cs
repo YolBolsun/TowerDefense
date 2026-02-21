@@ -49,24 +49,27 @@ public class UpgradeTooltipManager : MonoBehaviour
 
         Vector2 screenPos = cursorLocationAction.ReadValue<Vector2>();
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-        Collider2D hit = Physics2D.OverlapPoint(worldPos);
+        Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
             // Don't click through ui elements
             return;
         }
-
-        if (hit != null && (hit.CompareTag("EconomyTower") || hit.CompareTag("OffensiveTower")))
+        // loop through so we don't get absorbed by a projectile collider or any other object collider
+        foreach (Collider2D hit in hits)
         {
-            // Clicked on a collider with the matching tag
-            currObjectSelected = hit.gameObject.GetComponent<UpgradeableObject>();
-            SetupTooltip();
-        }
-        else
-        {
-            Debug.Log("Didn't find currently implemented selectable tag");
-            return;
+            if (hit != null && (hit.CompareTag("EconomyTower") || hit.CompareTag("OffensiveTower")))
+            {
+                // Clicked on a collider with the matching tag
+                currObjectSelected = hit.gameObject.GetComponent<UpgradeableObject>();
+                SetupTooltip();
+            }
+            else
+            {
+                Debug.Log("Didn't find currently implemented selectable tag");
+                return;
+            }
         }
 
         tooltipPanel.SetActive(true);
