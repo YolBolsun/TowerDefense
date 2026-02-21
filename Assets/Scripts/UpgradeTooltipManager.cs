@@ -68,18 +68,11 @@ public class UpgradeTooltipManager : MonoBehaviour
                 // Clicked on a collider with the matching tag
                 currObjectSelected = hit.gameObject.GetComponent<UpgradeableObject>();
                 SetupTooltip();
-            }
-            else
-            {
-                Debug.Log("Didn't find currently implemented selectable tag");
-                return;
+
+                tooltipPanel.SetActive(true);
+                PositionAtCursor();
             }
         }
-
-        tooltipPanel.SetActive(true);
-
-        if (tooltipPanel.activeSelf)
-            PositionAtCursor();
     }
 
     private void OnDeselect(InputAction.CallbackContext ctx)

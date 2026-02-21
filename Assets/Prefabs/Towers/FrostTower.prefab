@@ -180,12 +180,12 @@ MonoBehaviour:
     attackDamage: 1
     attackRange: 10
     projectileSpeed: 0
-    attackLifetime: 1.5
+    attackLifetime: 0.5
     splashRadius: 4
-    timeToDamage: 0.15
+    timeToDamage: 0.25
     followTarget: 0
     singleTarget: 0
     statusEffect: 2
-    statusEffectDuration: 1
+    statusEffectDuration: 0.75
     targetTransform: {fileID: 0}
     targetLocation: {x: 0, y: 0, z: 0}

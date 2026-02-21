@@ -180,7 +180,7 @@ MonoBehaviour:
     attackDamage: 10
     attackRange: 7
     projectileSpeed: 25
-    attackLifetime: 1
+    attackLifetime: 0.75
     splashRadius: 0.2
     timeToDamage: 0.01
     followTarget: 1
