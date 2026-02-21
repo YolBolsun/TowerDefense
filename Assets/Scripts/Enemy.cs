@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,11 +42,17 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currHealth = maxHealth;
+        ModifyEnemyHealth(maxHealth);
         path = MapSetup.instance.path;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void ModifyEnemyHealth(float scaledMaxHealth)
+    {
+        this.maxHealth = scaledMaxHealth;
+        currHealth = maxHealth;
         healthBarSlider.maxValue = maxHealth;
         healthBarSlider.value = maxHealth;
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame

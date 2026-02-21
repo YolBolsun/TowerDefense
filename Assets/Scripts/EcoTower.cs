@@ -1,5 +1,7 @@
 using TMPro;
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EcoTower : MonoBehaviour
 {
@@ -42,6 +44,7 @@ public class EcoTower : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Camera.main.GetComponent<CameraEffects>().CameraShake(.05f*damage);
         Health -= damage;
         if (Health <= 0f)
         {
@@ -54,7 +57,6 @@ public class EcoTower : MonoBehaviour
 
     public void LoseGame()
     {
-        //TODO handle loss appropriately
-        Debug.Log("You lose");
+        SceneManager.LoadScene("Loss Scene");
     }
 }

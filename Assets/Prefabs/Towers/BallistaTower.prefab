@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 5731ecd5a13e7264b9f0db1f93264062, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.69209075, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ed53e852c2c2edd4d8a8023d9f7edc79, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -173,14 +173,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OffensiveTower
   displayName: Ballista Tower
-  attackSpeed: 0.75
+  attackSpeed: 0.6
   projectile: 1
   DamageHitboxPrefab: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
   attackData:
     attackDamage: 10
     attackRange: 7
     projectileSpeed: 25
-    attackLifetime: 1
+    attackLifetime: 0.75
     splashRadius: 0.2
     timeToDamage: 0.01
     followTarget: 1

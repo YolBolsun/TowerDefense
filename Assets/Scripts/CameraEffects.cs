@@ -6,6 +6,8 @@ public class CameraEffects : MonoBehaviour
     private Vector3 initialCameraPosition;
     private float currentMagnitude;
 
+    [SerializeField] private float cameraShakeReductionRate;
+
 
     public void CameraShake(float magnitude)
     {
@@ -20,7 +22,7 @@ public class CameraEffects : MonoBehaviour
         while (currentMagnitude > 0)
         {
             transform.position = initialCameraPosition + Random.insideUnitSphere * currentMagnitude;
-            currentMagnitude -= 0.0001f;
+            currentMagnitude -= cameraShakeReductionRate;
             yield return null;
         }
     }

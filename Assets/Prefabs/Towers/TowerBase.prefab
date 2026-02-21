@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.81069183, g: 1, b: 0.7971698, a: 0.039215688}
+  m_Color: {r: 0.81069183, g: 1, b: 0.7971698, a: 0.1882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 7165215566222451778, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
-  cost1: 5
+  cost1: 10
   upgradeOption2: {fileID: 7165215566222451778, guid: 2367f67243468b241ab7e5695fe51e40, type: 3}
   cost2: 10
   tooltipText1: 'Arrow Tower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single Target\n
