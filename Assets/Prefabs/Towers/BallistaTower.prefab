@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OffensiveTower
   displayName: Ballista Tower
-  attackSpeed: 0.75
+  attackSpeed: 0.6
   projectile: 1
   DamageHitboxPrefab: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
   attackData:

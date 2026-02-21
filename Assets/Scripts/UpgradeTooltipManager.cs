@@ -92,6 +92,21 @@ public class UpgradeTooltipManager : MonoBehaviour
     {
         Vector2 screenPos = cursorLocationAction.ReadValue<Vector2>();
 
+        Debug.Log(screenPos);
+
+        float tooltipRectX = -1f;//-tooltipRect.rect.width;
+        float tooltipRectY = 0f;
+        if(screenPos.y > Screen.height - tooltipRect.rect.height)
+        {
+            tooltipRectY = 1f;// tooltipRect.rect.height;
+        }
+        if (screenPos.x > Screen.width - 2*tooltipRect.rect.width)
+        {
+            tooltipRectX = 1f;// tooltipRect.rect.width;
+        }
+
+        tooltipRect.pivot = new Vector2(tooltipRectX, tooltipRectY);
+
         //TODO use the location of the nearest selected tile not the mouse location directly
         tooltipRect.position = screenPos;
     }

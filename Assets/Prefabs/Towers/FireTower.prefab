@@ -182,7 +182,7 @@ MonoBehaviour:
     projectileSpeed: 10
     attackLifetime: 1
     splashRadius: 2
-    timeToDamage: 0.75
+    timeToDamage: 0.01
     followTarget: 1
     singleTarget: 0
     statusEffect: 3

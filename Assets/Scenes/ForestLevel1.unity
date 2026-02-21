@@ -215,29 +215,33 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -8.159998
       objectReference: {fileID: 0}
+    - target: {fileID: 3206571796895608359, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.35686275
+      objectReference: {fileID: 0}
     - target: {fileID: 3763135006034819630, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: m_Name
       value: CoreMapObjects
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: wavesTotal
-      value: 36
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: perWaveTime
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: lastWaveTotalHealth
-      value: 3000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: firstWaveTotalHealth
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: enemyHealthScalingPerWave
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: timeBetweenSpawnInClusters
@@ -249,7 +253,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: enemySingleSpawnCluster.Array.data[1].enemyType.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: enemySingleSpawnCluster.Array.data[3].enemyType.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: enemySingleSpawnCluster.Array.data[4].enemyType.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: 'enemySingleSpawnCluster.Array.data[0].enemyType.Array.data[0]'
@@ -3835,6 +3847,14 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[624].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 5289160058897566298, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.35686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453016119155876997, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5647288994554096544, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3889,6 +3909,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7074169892603750561, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088615788479708372, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8198538131963122683, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
