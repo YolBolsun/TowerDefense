@@ -42,6 +42,7 @@ public class EcoTower : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Camera.main.GetComponent<CameraEffects>().CameraShake(.1f*damage);
         Health -= damage;
         if (Health <= 0f)
         {
