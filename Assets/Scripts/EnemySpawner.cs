@@ -86,7 +86,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 for(int i = 0; i < waves[waveNumber].waveSpawns[spawnNumber].enemyNumber; i++)
                 {
-                    float randX = Random.Range(-1*spawnLocRandomness, spawnLocRandomness);
+                    float randX = Random.Range(-1 * spawnLocRandomness, spawnLocRandomness);
                     float randY = Random.Range(-1 * spawnLocRandomness, spawnLocRandomness);
                     Vector3 spawnLoc = new Vector3(transform.position.x + randX, transform.position.y + randY, transform.position.z);
                     GameObject.Instantiate(waves[waveNumber].waveSpawns[spawnNumber].enemyType,spawnLoc, Quaternion.identity, transform);
@@ -99,6 +99,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 spawnNumber += 1;
                 StartCoroutine(SpawnNext());
+                
             }  
         }
     }
