@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 001abdc4a487dc84183a707697a5643a
   - enabled: 1
+    path: Assets/Scenes/Loss Scene.unity
+    guid: 78b53b2601e513241a90ebc9ccf19d97
+  - enabled: 1
     path: Assets/Scenes/ForestLevel1.unity
     guid: afd58e96d0604d24cba9fa7c8c6b9c6e
+  - enabled: 1
+    path: Assets/Scenes/CaveLevel1.unity
+    guid: 18344390460287546bd8338ac686ec96
+  - enabled: 1
+    path: Assets/Scenes/TombLevel1.unity
+    guid: a708db31f345bef47b767b1cf8fcc7f0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

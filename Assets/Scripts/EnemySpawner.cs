@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -29,6 +30,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<SpawnCluster> enemySingleSpawnCluster;
     [SerializeField] private float timeBetweenSpawnInClusters;
     [SerializeField] private float enemyHealthScalingPerWave;
+
+    private bool spawnedAllWaves = false;
 
     [Serializable]
     private class SpawnCluster
@@ -67,13 +70,18 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //placeholder scene management, just go to next scene
+        if(spawnedAllWaves && transform.childCount == 0)
+        {
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex+1) % 5);
+        }
     }
 
     IEnumerator SpawnNext()
     {
         if(waveNumber >= waves.Count)
         {
-            Debug.Log("waves are done, should probably go to the next level or something");
+            spawnedAllWaves = true;
         }
         else
         {
