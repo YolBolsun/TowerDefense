@@ -51,11 +51,15 @@ public class UpgradeTooltipManager : MonoBehaviour
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
 
+        //warning about this being where the pointer was on the previous frame - should be fine for our purposes
+        Debug.unityLogger.filterLogType = LogType.Error;
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
             // Don't click through ui elements
             return;
         }
+        Debug.unityLogger.filterLogType = LogType.Log;
         // loop through so we don't get absorbed by a projectile collider or any other object collider
         foreach (Collider2D hit in hits)
         {
