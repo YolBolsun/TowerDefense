@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class OffensiveTower : MonoBehaviour
 {
+    [SerializeField] private string displayName;
     [SerializeField] private float attackSpeed;
     [SerializeField] private bool projectile = false;
     [SerializeField] private GameObject DamageHitboxPrefab;
@@ -78,6 +79,7 @@ public class OffensiveTower : MonoBehaviour
     void Start()
     {
         secondsPerAttack = 1 / attackSpeed;
+        ConfigureUpgradeableObject();
     }
 
     // Update is called once per frame
@@ -159,6 +161,24 @@ public class OffensiveTower : MonoBehaviour
                 currentTarget = enemy;
             }
         }
+    }
+
+    private void ConfigureUpgradeableObject()
+    {
+        GetComponent<UpgradeableObject>().currentTowerDescription = GetUpgradeableObjectTooltip();
+    }
+
+    public string GetUpgradeableObjectTooltip()
+    {
+        string targetType = attackData.singleTarget ? "Single Target" : "AOE";
+        string effect = attackData.statusEffect.ToString();
+        
+        return $@"{displayName}
+Damage: {attackData.attackDamage}
+Range: {attackData.attackRange}
+{targetType}
+Effect: {effect}";
+
     }
 
 }

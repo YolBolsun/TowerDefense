@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35dc7b5724cc6d442859f498e5f702be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 10
+  maxHealth: 20
   movementSpeed: 4
   minimumProximityToPathPoint: 0.25
   damage: 1
@@ -122,6 +122,7 @@ MonoBehaviour:
   splitterCount: 0
   spawnLocRandomness: 0.5
   splitVersionPrefab: {fileID: 0}
+  currPathIndex: 0
   distanceMoved: 0
 --- !u!60 &-4812373525007101051
 PolygonCollider2D:

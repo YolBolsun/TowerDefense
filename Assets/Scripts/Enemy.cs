@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public float distanceMoved = 0f;
 
+    private SpriteRenderer spriteRenderer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour
         path = MapSetup.instance.path;
         healthBarSlider.maxValue = maxHealth;
         healthBarSlider.value = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -85,7 +88,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            transform.Translate((destination-transform.position).normalized * adjustedMovementSpeed * Time.deltaTime);
+            Vector3 direction = (destination - transform.position).normalized;
+            spriteRenderer.flipX = direction.x < 0f;
+            transform.Translate(direction * adjustedMovementSpeed * Time.deltaTime);
             distanceMoved += adjustedMovementSpeed;
         }
         
