@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 5731ecd5a13e7264b9f0db1f93264062, type: 3}
-  m_Color: {r: 0.57169807, g: 0.8269996, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9b4343efb71603b4ba68612fc33b01cf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,12 +180,12 @@ MonoBehaviour:
     attackDamage: 1
     attackRange: 10
     projectileSpeed: 0
-    attackLifetime: 1.5
+    attackLifetime: 0.5
     splashRadius: 4
-    timeToDamage: 0.15
+    timeToDamage: 0.25
     followTarget: 0
     singleTarget: 0
     statusEffect: 2
-    statusEffectDuration: 1
+    statusEffectDuration: 0.75
     targetTransform: {fileID: 0}
     targetLocation: {x: 0, y: 0, z: 0}

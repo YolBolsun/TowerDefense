@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Specify sets of indices in prefabs to use to spawn together in a short duration")]
     [SerializeField] private List<SpawnCluster> enemySingleSpawnCluster;
     [SerializeField] private float timeBetweenSpawnInClusters;
+    [SerializeField] private float enemyHealthScalingPerWave;
 
     [Serializable]
     private class SpawnCluster
@@ -41,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
         public GameObject enemyType;
         public int enemyNumber;
         public float timeBeforeNextSpawn;
+        public float healthScaling = 0f;
     }
 
     [Serializable]
@@ -89,7 +91,8 @@ public class EnemySpawner : MonoBehaviour
                     float randX = Random.Range(-1 * spawnLocRandomness, spawnLocRandomness);
                     float randY = Random.Range(-1 * spawnLocRandomness, spawnLocRandomness);
                     Vector3 spawnLoc = new Vector3(transform.position.x + randX, transform.position.y + randY, transform.position.z);
-                    GameObject.Instantiate(waves[waveNumber].waveSpawns[spawnNumber].enemyType,spawnLoc, Quaternion.identity, transform);
+                    Enemy enemy = GameObject.Instantiate(waves[waveNumber].waveSpawns[spawnNumber].enemyType,spawnLoc, Quaternion.identity, transform).GetComponent<Enemy>();
+                    enemy.ModifyEnemyHealth(enemy.maxHealth + waves[waveNumber].waveSpawns[spawnNumber].healthScaling);
                 }
 
                 if (!spawnNextWaveEarly)
@@ -137,10 +140,12 @@ public class EnemySpawner : MonoBehaviour
                 foreach(GameObject prefab in prefabsToSpawn)
                 {
                     Enemy enemy = prefab.GetComponent<Enemy>();
-                    healthSpawned += enemy.maxHealth;
+                    float healthScaling = enemyHealthScalingPerWave * i;
+                    healthSpawned += enemy.maxHealth + healthScaling;
                     Spawnable toSpawn = new Spawnable();
                     toSpawn.enemyType = prefab;
                     toSpawn.enemyNumber = 1;
+                    toSpawn.healthScaling = healthScaling;
                     spawnedThisCluster += 1;
                     // if we are not on the last spawn of the cluster
                     if (prefabsToSpawn.Count > spawnedThisCluster)

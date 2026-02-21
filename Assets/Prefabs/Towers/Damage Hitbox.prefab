@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8335701857167304492}
   - component: {fileID: -4433779078921794788}
   - component: {fileID: 5750709447618070251}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Damage Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,9 +142,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ba56b262b170344aace34218d001d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  attackDamage: 0
-  splashRadius: 0
-  splashDuration: 0
+  attackData:
+    attackDamage: 0
+    attackRange: 0
+    projectileSpeed: 0
+    attackLifetime: 0
+    splashRadius: 0
+    timeToDamage: 0
+    followTarget: 0
+    singleTarget: 0
+    statusEffect: 0
+    statusEffectDuration: 0
+    targetTransform: {fileID: 0}
+    targetLocation: {x: 0, y: 0, z: 0}
 --- !u!50 &5750709447618070251
 Rigidbody2D:
   serializedVersion: 5

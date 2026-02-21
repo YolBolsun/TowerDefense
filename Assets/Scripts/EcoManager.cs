@@ -26,6 +26,7 @@ public class EcoManager : MonoBehaviour
         {
             GameObject.Destroy(this.gameObject);
         }
+        CurrGold = 10;
     }
 
     // Update is called once per frame
