@@ -49,30 +49,30 @@ public class UpgradeTooltipManager : MonoBehaviour
 
         Vector2 screenPos = cursorLocationAction.ReadValue<Vector2>();
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-        Collider2D hit = Physics2D.OverlapPoint(worldPos);
+        Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
+
+        //warning about this being where the pointer was on the previous frame - should be fine for our purposes
+        Debug.unityLogger.filterLogType = LogType.Error;
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
             // Don't click through ui elements
             return;
         }
-
-        if (hit != null && (hit.CompareTag("EconomyTower") || hit.CompareTag("OffensiveTower")))
+        Debug.unityLogger.filterLogType = LogType.Log;
+        // loop through so we don't get absorbed by a projectile collider or any other object collider
+        foreach (Collider2D hit in hits)
         {
-            // Clicked on a collider with the matching tag
-            currObjectSelected = hit.gameObject.GetComponent<UpgradeableObject>();
-            SetupTooltip();
-        }
-        else
-        {
-            Debug.Log("Didn't find currently implemented selectable tag");
-            return;
-        }
+            if (hit != null && (hit.CompareTag("EconomyTower") || hit.CompareTag("OffensiveTower")))
+            {
+                // Clicked on a collider with the matching tag
+                currObjectSelected = hit.gameObject.GetComponent<UpgradeableObject>();
+                SetupTooltip();
 
-        tooltipPanel.SetActive(true);
-
-        if (tooltipPanel.activeSelf)
-            PositionAtCursor();
+                tooltipPanel.SetActive(true);
+                PositionAtCursor();
+            }
+        }
     }
 
     private void OnDeselect(InputAction.CallbackContext ctx)
@@ -91,6 +91,21 @@ public class UpgradeTooltipManager : MonoBehaviour
     private void PositionAtCursor()
     {
         Vector2 screenPos = cursorLocationAction.ReadValue<Vector2>();
+
+        Debug.Log(screenPos);
+
+        float tooltipRectX = -1f;//-tooltipRect.rect.width;
+        float tooltipRectY = 0f;
+        if(screenPos.y > Screen.height - tooltipRect.rect.height)
+        {
+            tooltipRectY = 1f;// tooltipRect.rect.height;
+        }
+        if (screenPos.x > Screen.width - 2*tooltipRect.rect.width)
+        {
+            tooltipRectX = 1f;// tooltipRect.rect.width;
+        }
+
+        tooltipRect.pivot = new Vector2(tooltipRectX, tooltipRectY);
 
         //TODO use the location of the nearest selected tile not the mouse location directly
         tooltipRect.position = screenPos;

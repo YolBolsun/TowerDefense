@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 7165215566222451778, guid: 565ec4ecffe1d354ab0b08b64fe08fb3, type: 3}
-  cost1: 5
+  cost1: 10
   upgradeOption2: {fileID: 7165215566222451778, guid: 2367f67243468b241ab7e5695fe51e40, type: 3}
   cost2: 10
   tooltipText1: 'Arrow Tower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single Target\n

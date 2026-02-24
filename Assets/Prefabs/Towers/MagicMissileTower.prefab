@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 5731ecd5a13e7264b9f0db1f93264062, type: 3}
-  m_Color: {r: 0, g: 0.51510173, b: 0.86415094, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 095c73a0608e50d4395ed3f02526fc56, type: 3}
+  m_Color: {r: 0.69595414, g: 0.90943396, b: 0.50619435, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 7165215566222451778, guid: a479250ebdaf32c46a5061db099c10bd, type: 3}
-  cost1: 5
+  cost1: 20
   upgradeOption2: {fileID: 7165215566222451778, guid: 0fa4eb119f6b52c4581d30f930456446, type: 3}
-  cost2: 10
+  cost2: 20
   tooltipText1: fire
   tooltipText2: frost
   currentTowerDescription: 'Arrow\nTower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single
@@ -177,10 +177,10 @@ MonoBehaviour:
   projectile: 1
   DamageHitboxPrefab: {fileID: 3265956726271270633, guid: 92afb80dd91b65b4babc84314c20079a, type: 3}
   attackData:
-    attackDamage: 2.5
+    attackDamage: 5
     attackRange: 10
     projectileSpeed: 30
-    attackLifetime: 1.5
+    attackLifetime: 1.25
     splashRadius: 0.2
     timeToDamage: 0.15
     followTarget: 1

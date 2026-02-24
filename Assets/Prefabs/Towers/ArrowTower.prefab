@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeableObject
   upgradeOption1: {fileID: 7165215566222451778, guid: 0b225a6c9f77d3344b3bc22d543d8398, type: 3}
-  cost1: 5
+  cost1: 20
   upgradeOption2: {fileID: 7165215566222451778, guid: 7d72cb38dd5688442a888b0f5b0d1d18, type: 3}
-  cost2: 10
+  cost2: 20
   tooltipText1: ballista
   tooltipText2: cannon
   currentTowerDescription: 'Arrow\nTower\n\n Cost: ?\n Damage: ?\n Range: ?\n Single
@@ -180,7 +180,7 @@ MonoBehaviour:
     attackDamage: 5
     attackRange: 5
     projectileSpeed: 20
-    attackLifetime: 1
+    attackLifetime: 0.75
     splashRadius: 0.2
     timeToDamage: 0.15
     followTarget: 1
