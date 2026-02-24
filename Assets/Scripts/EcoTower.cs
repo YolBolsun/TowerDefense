@@ -1,5 +1,7 @@
 using TMPro;
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EcoTower : MonoBehaviour
 {
@@ -55,7 +57,6 @@ public class EcoTower : MonoBehaviour
 
     public void LoseGame()
     {
-        //TODO handle loss appropriately
-        Debug.Log("You lose");
+        SceneManager.LoadScene("Loss Scene");
     }
 }
