@@ -37,7 +37,7 @@ public class EcoTower : MonoBehaviour
     {
         if(timeOfLastIncomeEvent + timeBetweenIncomeEvents < Time.time)
         {
-            EcoManager.instance.CurrGold += incomeAmount;
+            //EcoManager.instance.CurrGold += incomeAmount;
             timeOfLastIncomeEvent = Time.time;
         }
     }

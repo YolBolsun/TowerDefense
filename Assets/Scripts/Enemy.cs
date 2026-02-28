@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float minimumProximityToPathPoint;
     [SerializeField] private float damage;
+    [SerializeField] private int goldDropped = 1;
 
     [Header("Sound FX and Visuals")]
     [SerializeField] private AudioClip deathSound;
@@ -140,6 +141,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        EcoManager.instance.CurrGold += goldDropped;
         GetComponent<AudioSource>().PlayOneShot(deathSound);
         Destroy(gameObject, .25f);
         this.enabled = false;

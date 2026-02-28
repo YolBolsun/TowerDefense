@@ -113,6 +113,7 @@ MonoBehaviour:
   movementSpeed: 4
   minimumProximityToPathPoint: 0.25
   damage: 1
+  goldDropped: 1
   deathSound: {fileID: 8300000, guid: 84a51441b1210804d93d7721fb4d5200, type: 3}
   healthBarSlider: {fileID: 3016165453722369192}
   burnTickAmount: 1
