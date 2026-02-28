@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -31,7 +30,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timeBetweenSpawnInClusters;
     [SerializeField] private float enemyHealthScalingPerWave;
 
+    //set in the editor
+    public GameObject buttonPrefab; //THIS NEEDS TO BE SET IN THE EDITOR NOW!!! Drag the NextLevelButton.prefab in the prefab/UI folder in
+
+    private Transform canvasTransform;
     private bool spawnedAllWaves = false;
+    private bool InstintiatedButted = false;
 
     [Serializable]
     private class SpawnCluster
@@ -65,15 +69,25 @@ public class EnemySpawner : MonoBehaviour
         {
             StartCoroutine(SpawnNext());
         }
+
+        SetupTheNextLevelButton();
     }
 
     // Update is called once per frame
     void Update()
     {
         //placeholder scene management, just go to next scene
-        if(spawnedAllWaves && transform.childCount == 0)
+        if(spawnedAllWaves && transform.childCount == 0 && InstintiatedButted == false)
         {
-            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex+1) % 5);
+            //SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex+1) % 5);
+            GameObject newButton = Instantiate(buttonPrefab);
+            newButton.transform.SetParent(canvasTransform, false);
+            TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                buttonText.text = "Start Next Level";
+            }
+            InstintiatedButted = true;
         }
     }
 
@@ -188,6 +202,22 @@ public class EnemySpawner : MonoBehaviour
             int prefabIndex = Random.Range(0, prefabsToUse.Count);
             toSpawn.Add(prefabsToUse[prefabIndex]);
             return toSpawn;
+        }
+    }
+
+    public void SetupTheNextLevelButton() //Call this at the start of every level.
+    {
+        GameObject currentCanvas = GameObject.Find("Canvas");
+        InstintiatedButted = false;
+
+        if (currentCanvas == null)
+        {
+            Debug.LogError("Error: EnemySpawner could not find the canvas (The next level button won't spawn)");
+        }
+        else
+        {
+            Debug.Log("We found the Canvas in HardCore Minecraft!! (gone wrong) ((gone sexual?))");
+            canvasTransform = currentCanvas.transform;
         }
     }
 

@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: buttonPrefab
+      value: 
+      objectReference: {fileID: 1606918058675407284, guid: ce6963a949929fd4cafcc5dcfb2120ee, type: 3}
     - target: {fileID: 6334444143784997200, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 960

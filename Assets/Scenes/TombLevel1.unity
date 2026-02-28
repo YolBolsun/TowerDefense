@@ -1044,6 +1044,10 @@ PrefabInstance:
       value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
+      propertyPath: buttonPrefab
+      value: 
+      objectReference: {fileID: 1606918058675407284, guid: ce6963a949929fd4cafcc5dcfb2120ee, type: 3}
+    - target: {fileID: 4587280619730881044, guid: 3d8783a54cb563d4ab45ea0c0c0ff5a6, type: 3}
       propertyPath: lastWaveTotalHealth
       value: 1500
       objectReference: {fileID: 0}
